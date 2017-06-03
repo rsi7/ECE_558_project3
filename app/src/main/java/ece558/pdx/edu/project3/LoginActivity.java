@@ -15,6 +15,7 @@ import android.widget.EditText;
  * A login screen that offers login via email/password.
  * Provides Functionality to Signup for new account
  */
+
 public class LoginActivity extends AppCompatActivity {
 
     // UI references
