@@ -107,8 +107,8 @@ public class LocationUpdate extends AppCompatActivity {
                 /**
                  * store in latitude , longitude variables to pass to json object
                  */
-                modalat= Double.parseDouble("Pass Latitude over here named:rx_lat");
-                modalon= Double.parseDouble("Pass Longitude over here named:rx_lon");
+                modalat= Double.parseDouble(rx_lat);
+                modalon= Double.parseDouble(rx_lon);
 
                 try {
 
