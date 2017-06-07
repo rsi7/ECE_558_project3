@@ -9,7 +9,7 @@
     <!--String related to Maps -->
 
     <string name="action_settings">Setting</string>
-    <string name="google_place_api">AIzaSyAOsNieScdU9QqiNYAODL6Rrk4LeoK3bvs</string>
+    <string name="google_place_api">AIzaSyDUsB2cLHnIOioDOZuX6XrAZcdvYaoBN3A</string>
 
     <!--String related to php server-->
     <string name="app_name3">php_extended</string>
