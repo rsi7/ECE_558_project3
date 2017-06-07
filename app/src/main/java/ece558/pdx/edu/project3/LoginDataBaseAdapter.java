@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 /**
  * Created by Hiral on 7/28/2016.
  */
+
 public class LoginDataBaseAdapter {
         static final String DATABASE_NAME = "login.db";
         static final int DATABASE_VERSION = 1;
@@ -16,10 +17,9 @@ public class LoginDataBaseAdapter {
 
         // SQL Statement to create a new database.
         static final String DATABASE_CREATE = "create table "+"LOGIN"+
-                "( " +"ID"+" integer primary key autoincrement,"+ "USERNAME  text,PASSWORD text); ";
-    /*
-     * TODO: Edit the above string to add two new columns in sequence longitude and latitude
-     */
+                "( " +"ID"+" integer primary key autoincrement,"+ "USERNAME  text,PASSWORD text,LONGITUDE text,LATITUDE text); ";
+
+        // TODO_DONE: Edit the above string to add two new columns in sequence longitude and latitude
 
         // Variable to hold the database instance
         public  SQLiteDatabase db;
@@ -53,11 +53,11 @@ public class LoginDataBaseAdapter {
             // Assigning values for each row.
             newValues.put("USERNAME",userName);
             newValues.put("PASSWORD",password);
+            newValues.put("LONGITUDE",lng);
+            newValues.put("LATITUDE",lat);
 
-            /*
-             * TODO: Add your code here to insert Latitude and Longitude in database
-             *
-             */
+            // TODO_DONE: Add your code here to insert Latitude and Longitude in database
+
 
             // Insert the row into your table
             db.insert("LOGIN", null, newValues);
@@ -83,15 +83,49 @@ public class LoginDataBaseAdapter {
         }
 
     /*
-     * TODO: Code here a method getLng() for extracting Longitude
+     * TODO_DONE: Code here a method getLng() for extracting Longitude
      *  Hint: Follow the method getSingleEntry() mentioned above
      */
 
+    public String getLng(String userName) {
+
+        Cursor cursor = db.query("LOGIN", null, " USERNAME=?", new String[]{userName}, null, null, null);
+
+        // if userName doesn't exist in database...
+        if(cursor.getCount()<1) {
+            cursor.close();
+            return "NOT EXIST";
+        }
+
+        cursor.moveToFirst();
+
+        String longitude= cursor.getString(cursor.getColumnIndex("LONGITUDE"));
+        cursor.close();
+        return longitude;
+    }
 
     /*
-     * TODO: Code here a method getLat() for extracting Latitude
+     * TODO_DONE: Code here a method getLat() for extracting Latitude
      *  Hint: Follow the method getSingleEntry() mentioned above
      */
 
+    public String getLat(String userName) {
+
+        Cursor cursor = db.query("LOGIN", null, " USERNAME=?", new String[]{userName}, null, null, null);
+
+        // if userName doesn't exist in database...
+        if(cursor.getCount()<1) {
+            cursor.close();
+            return "NOT EXIST";
+        }
+
+        cursor.moveToFirst();
+
+        String latitude = cursor.getString(cursor.getColumnIndex("LATITUDE"));
+        cursor.close();
+        return latitude;
     }
+
+
+}
 

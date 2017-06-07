@@ -36,24 +36,27 @@ public class SignUPActivity extends LoginActivity
         loginDataBaseAdapter=new LoginDataBaseAdapter(this);
         loginDataBaseAdapter=loginDataBaseAdapter.open();
 
-        /*
-         * TODO: Define EditText attributes for editTextUserName,editTextPassword,editTextConfirmPassword
-         */
+        // TODO_DONE: Define EditText attributes for editTextUserName,editTextPassword,editTextConfirmPassword
 
-        /*
-         * TODO: Define EditText Attribute for latitude,longitude
-         */
+        editTextUserName = (EditText) findViewById(R.id.text_UserName);
+        editTextPassword = (EditText) findViewById(R.id.text_Password);
+        editTextConfirmPassword = (EditText) findViewById(R.id.text_ConfirmPassword);
 
-        /*
-         * TODO: Define Button attribute for btnCreateAccount
-         */
+         // TODO_DONE: Define EditText Attribute for latitude,longitude
+
+        latitude = (EditText) findViewById(R.id.text_latitude);
+        longitude = (EditText) findViewById(R.id.text_longitude);
+
+         // TODO_DONE: Define Button attribute for btnCreateAccount
+
+        btnCreateAccount = (Button) findViewById(R.id.button_CreateAccount);
 
         //int percode=1;
         ActivityCompat.requestPermissions(SignUPActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
 
-        /*
-         * TODO: Define Button attribute for btnHomeLocation
-         */
+        // TODO_DONE: Define Button attribute for btnHomeLocation
+
+        btnHomeLocation = (Button) findViewById(R.id.button_HomeLocation);
 
         btnHomeLocation.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
