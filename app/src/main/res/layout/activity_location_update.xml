@@ -10,11 +10,38 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ece558.pdx.edu.project3.LocationUpdate">
 
-    <!-- TODO: EditText UI Control for get_location text box -->
 
-    <!-- TODO: Button UI Control for Current Location -->
+    <EditText
+        android:id="@+id/Location_EditText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/Current_Loc_Button"
+        android:layout_toStartOf="@+id/Current_Loc_Button" />
 
-    <!-- TODO: TextView UI Control to save address on UI -->
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Location"
+        android:id="@+id/Current_Loc_Button"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        />
+
+    <TextView
+        android:id="@+id/Current_Loc_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="8dp"
+        android:text="Currrent layout"
+        android:layout_below="@+id/Location_EditText"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"

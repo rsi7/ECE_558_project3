@@ -7,18 +7,73 @@
               android:weightSum="1">
 
 
-    <!-- TODO: EditText UI Control for editTextUserName -->
+    <!-- TODO_DONE: EditText UI Control for editTextUserName -->
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_UserName"
+        android:inputType="text"
+        android:hint="@string/hint_UserName"
+        android:layout_gravity="center"/>
 
-    <!-- TODO: EditText UI Control for editTextPassword -->
+    <!-- TODO_DONE: EditText UI Control for editTextPassword -->
 
-    <!-- TODO: EditText UI Control for editTextConfirmPassword -->
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_Password"
+        android:inputType="text"
+        android:hint="@string/hint_Password"
+        android:layout_gravity="center"/>
 
-    <!-- TODO: EditText UI Control for Latitude -->
+    <!-- TODO_DONE: EditText UI Control for editTextConfirmPassword -->
 
-    <!-- TODO: EditText UI Control for Longitude-->
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_ConfirmPassword"
+        android:inputType="text"
+        android:hint="@string/hint_ConfirmPassword"
+        android:layout_gravity="center"/>
 
-    <!-- TODO: Button UI Control for buttonCreateAccount -->
+    <!-- TODO_DONE: EditText UI Control for Latitude -->
 
-    <!-- TODO: Button UI Control for Home_Button -->
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_latitude"
+        android:inputType="text"
+        android:hint="@string/hint_latitude"
+        android:layout_gravity="center"/>
+
+    <!-- TODO_DONE: EditText UI Control for Longitude-->
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_longitude"
+        android:inputType="text"
+        android:hint="@string/hint_longitude"
+        android:layout_gravity="center"/>
+
+    <!-- TODO_DONE: Button UI Control for buttonCreateAccount -->
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_CreateAccount"
+        android:layout_gravity="center"
+        android:text="@string/button_CreateAccount"
+        android:padding="18dp"/>
+
+    <!-- TODO_DONE: Button UI Control for Home_Button -->
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_HomeLocation"
+        android:layout_gravity="center"
+        android:text="@string/button_Home"
+        android:padding="18dp"/>
 
 </LinearLayout>

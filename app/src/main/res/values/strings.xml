@@ -15,4 +15,14 @@
     <string name="app_name3">php_extended</string>
     <string name="title_activity_maps">Map</string>
 
+    <!--String related to User Name-->
+    <string name="hint_UserName">Enter user name</string>
+    <string name="hint_Password">Enter password</string>
+    <string name="hint_ConfirmPassword">Confirm password</string>
+    <string name="hint_latitude">Latitude</string>
+    <string name="hint_longitude">Longitude</string>
+    <string name="button_CreateAccount">Create Account</string>
+    <string name="button_Home">Home</string>
+    <string name="action_sign_up">Sign Up</string>
+
 </resources>

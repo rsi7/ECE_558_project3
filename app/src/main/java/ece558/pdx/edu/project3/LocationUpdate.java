@@ -1,5 +1,8 @@
 package ece558.pdx.edu.project3;
 
+
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -8,12 +11,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
+
+//import com.google.android.gms.location.places.Place;
+//import com.google.android.gms.location.PlacePicker;
 
 
 /**
@@ -21,35 +34,54 @@ import java.util.concurrent.ExecutionException;
  *
  */
 public class LocationUpdate extends AppCompatActivity {
-
+    private static final String EXTRA_USER_NAME="edu.pdx.ece.fjl.project3.user_name";
+    private static final int PLACE_PICKER_REQUEST = 1;
     private EditText send_message;
+    private EditText mLocationET;
+    private TextView mLocationTV;
     private Button send;
-    int Place_Picker_request=1;
+    private Button mCurrentLoc;
     Editable message;
     LoginDataBaseAdapter loginData;
     public double latitude,longitude,modalat,modalon;
+    public String address;
+
+    public static Intent newIntent(Context packageContext, String userName) {
+        Intent intent = new Intent(packageContext,LocationUpdate.class);
+        intent.putExtra(EXTRA_USER_NAME, userName);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_update);
 
-        /*
-         * TODO: Define onClick Listener for "get_location" text box to get user's current location
-         * Hint: Need to define IntentBuilder for PlacePicker built-in UI widget
-         * Reference : https://developers.google.com/places/android-api/placepicker
-         */
+        mLocationET = (EditText) findViewById(R.id.Location_EditText);
+        mLocationET.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        /*
-         * TODO: Define TextView field to display the address of current location on the UI
-         *
-         */
+                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+                try {
+                    startActivityForResult(builder.build(LocationUpdate.this), PLACE_PICKER_REQUEST);
+                } catch (GooglePlayServicesRepairableException e) {
+                    e.printStackTrace();
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
-        /*
-         * TODO: Define onClick Listener for "Current_Location Button"
-         * Hint: OnClick event should set the text for TextView field defined above
-         */
+        mLocationTV = (TextView) findViewById(R.id.Current_Loc_TextView);
 
+        mCurrentLoc = (Button) findViewById(R.id.Current_Loc_Button);
+        mCurrentLoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mLocationTV.setText(address);
+            }
+        });
 
         /*
          * Do not edit the code below as it is dependent on server just fill the required snippets
@@ -67,20 +99,16 @@ public class LocationUpdate extends AppCompatActivity {
                  */
                 message=send_message.getText();
                 Bundle extras=getIntent().getExtras();
-                String rx_username=extras.getString("tx_user_name");
+                String rx_username=extras.getString(EXTRA_USER_NAME);
 
-                /*
-                 * TODO: Enable the code below after defining getLat() and getLng()
-                 * TODO: methods in LoginDataBaseAdapter
-                 */
-                //String rx_lat=loginData.getLat(rx_username);
-                //String rx_lon=loginData.getLng(rx_username);
+                String rx_lat=loginData.getLat(rx_username);
+                String rx_lon=loginData.getLng(rx_username);
 
                 /**
                  * store in latitude , longitude variables to pass to json object
                  */
-                modalat=Double.parseDouble("Pass Latitude over here named:rx_lat");
-                modalon=Double.parseDouble("Pass Longitude over here named:rx_lon");
+                modalat= Double.parseDouble("Pass Latitude over here named:rx_lat");
+                modalon= Double.parseDouble("Pass Longitude over here named:rx_lon");
 
                 try {
 
@@ -113,9 +141,9 @@ public class LocationUpdate extends AppCompatActivity {
                 }
                 //To handle exceptions
                 catch (JSONException e)
-                    {
-                        e.printStackTrace();
-                    }
+                {
+                    e.printStackTrace();
+                }
                 catch (ExecutionException e)
                 {
                     e.printStackTrace();
@@ -128,13 +156,18 @@ public class LocationUpdate extends AppCompatActivity {
         });
     }
 
-
-    /**
-     * TODO: Define onActivityResult() method which would take Place_Picker_request
-     * and extract current Latitude, Longitude and address string
-     * Hint : Set the address String to "get_location" text box
-     * Reference : https://developers.google.com/places/android-api/placepicker
-     */
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PLACE_PICKER_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                Place place = PlacePicker.getPlace(data, this);
+                LatLng LaLo = place.getLatLng();
+                latitude = LaLo.latitude;
+                longitude = LaLo.longitude;
+                address = place.getAddress().toString();
+                mLocationET.setText(address);
+            }
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -153,4 +186,3 @@ public class LocationUpdate extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
-
