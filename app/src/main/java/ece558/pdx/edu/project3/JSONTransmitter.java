@@ -33,7 +33,7 @@ public class JSONTransmitter extends AsyncTask <JSONObject,JSONObject, JSONObjec
      * you have to use the one assigned to your team
      * Edit the url string " http://50.137.169.255/Your Team Name.php"
      */
-    String url = "http://76.105.208.49:8080/Your_Team_Name.php";
+    String url = "http://http://50.137.169.255/grp4.php";
 
     @Override
     protected JSONObject doInBackground(JSONObject... data) {
